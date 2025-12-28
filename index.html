@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>我的小網站</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="回到頂部">MySite</a>
+
+      <nav class="nav" aria-label="主選單">
+        <a href="#about">關於</a>
+        <a href="#projects">專案</a>
+        <a href="#tools">小工具</a>
+        <a href="#contact">聯絡</a>
+      </nav>
+
+      <button id="themeBtn" class="btn ghost" type="button" aria-pressed="false">
+        切換主題
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>一個乾淨、可延伸的網站模板</h1>
+          <p class="muted">
+            這個頁面包含導覽列、卡片區、互動小工具與表單提示。你可以把它改成你的專題展示頁。
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#projects">看專案</a>
+            <a class="btn ghost" href="#tools">用小工具</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num" id="visitCount">0</div>
+              <div class="stat-label">本機瀏覽次數</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num" id="clock">--:--:--</div>
+              <div class="stat-label">現在時間</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card" role="img" aria-label="裝飾卡片">
+          <div class="hero-card-inner">
+            <p class="tag">Mini Portfolio</p>
+            <h2>把你的內容放進來</h2>
+            <ul class="checklist">
+              <li>專題介紹與照片</li>
+              <li>功能亮點與技術</li>
+              <li>影片 / GitHub / 簡報</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2>關於這個網站</h2>
+        <p class="muted">
+          這是一個「不用後端也能有互動」的基礎網站：使用 localStorage 記錄主題與待辦事項，
+          並提供簡潔的排版結構，適合當作專題作品集或活動介紹頁的起點。
+        </p>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>易修改</h3>
+            <p class="muted">整體只分成 HTML / CSS / JS 三檔，結構直覺。</p>
+          </article>
+          <article class="card">
+            <h3>可擴充</h3>
+            <p class="muted">你可以加上更多區塊、圖片輪播、甚至接 API。</p>
+          </article>
+          <article class="card">
+            <h3>有互動</h3>
+            <p class="muted">主題切換、待辦、瀏覽計數、時間顯示。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>專案展示</h2>
+          <div class="search">
+            <label class="sr-only" for="projectSearch">搜尋專案</label>
+            <input id="projectSearch" type="search" placeholder="輸入關鍵字，例如：ESP32、OLED、伺服" />
+          </div>
+        </div>
+
+        <div id="projectList" class="grid-3">
+          <article class="card project" data-tags="esp32 ocr camera iot">
+            <h3>智慧攝影追蹤</h3>
+            <p class="muted">以感測器觸發攝影並追蹤目標，適合展示控制與影像整合。</p>
+            <div class="chips">
+              <span class="chip">ESP32</span><span class="chip">CAM</span><span class="chip">Servo</span>
+            </div>
+          </article>
+
+          <article class="card project" data-tags="robot oled servo pca9685">
+            <h3>互動機器人</h3>
+            <p class="muted">OLED 表情與伺服動作協同，打造可展示的人機互動原型。</p>
+            <div class="chips">
+              <span class="chip">OLED</span><span class="chip">PCA9685</span><span class="chip">MG90S</span>
+            </div>
+          </article>
+
+          <article class="card project" data-tags="web ui dashboard">
+            <h3>控制面板</h3>
+            <p class="muted">用網頁做控制與狀態監控，將硬體資料視覺化。</p>
+            <div class="chips">
+              <span class="chip">Web</span><span class="chip">UI</span><span class="chip">Dashboard</span>
+            </div>
+          </article>
+        </div>
+
+        <p id="noResult" class="muted" hidden>找不到符合的專案。</p>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section id="tools" class="section">
+      <div class="container">
+        <h2>小工具：待辦清單</h2>
+        <p class="muted">資料會儲存在瀏覽器 localStorage，本機測試很方便。</p>
+
+        <div class="todo">
+          <form id="todoForm" class="todo-row">
+            <label class="sr-only" for="todoInput">新增待辦</label>
+            <input id="todoInput" type="text" placeholder="輸入待辦事項，例如：完成接線圖、整理心得" autocomplete="off" />
+            <button class="btn" type="submit">新增</button>
+            <button id="clearBtn" class="btn ghost" type="button">清空</button>
+          </form>
+
+          <ul id="todoList" class="todo-list" aria-live="polite"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>聯絡表單（示範）</h2>
+        <p class="muted">這裡先做前端驗證與提示；你日後可接 EmailJS、表單後端或 Google Form。</p>
+
+        <form id="contactForm" class="card form">
+          <div class="form-row">
+            <label for="name">姓名</label>
+            <input id="name" name="name" type="text" placeholder="你的名字" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required />
+          </div>
+          <div class="form-row">
+            <label for="message">訊息</label>
+            <textarea id="message" name="message" rows="5" placeholder="想說什麼..." required></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit">送出</button>
+            <span id="formHint" class="muted" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span class="muted">© <span id="year"></span> MySite</span>
+      <a class="muted" href="#top">回到頂部</a>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
